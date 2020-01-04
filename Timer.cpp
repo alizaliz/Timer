@@ -109,6 +109,14 @@ void Timer::stop(int8_t id)
 	}
 }
 
+bool Timer::isActive(int8_t id)
+{
+	if (id >= 0 && id < MAX_NUMBER_OF_EVENTS) {
+		return _events[id].eventType != EVENT_NONE;
+	}
+	return false;
+}
+
 void Timer::update(void)
 {
 	unsigned long now = millis();
@@ -136,3 +144,5 @@ int8_t Timer::findFreeEventIndex(void)
 	}
 	return NO_TIMER_AVAILABLE;
 }
+
+
